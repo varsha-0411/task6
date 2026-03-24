@@ -1,22 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dep
+  name: my-app-deployment
+  labels:
+    app: my-app
 spec:
   replicas: 2
   selector:
-    matchLabel:
+    matchLabels:
       app: red
   template:
     metadata:
       labels:
         app: red
-spec:
-  containers:
-    - name: cicd
-      image: varsha0411/chittiimg:v1
-      ports:
-    - containerPort: 8080
+    spec:
+      containers:
+      - name: my-container
+        image: varsha0411/chittiimg:v1
+        ports:
+        - containerPort: 80
 
 ---
 apiVersion: v1
